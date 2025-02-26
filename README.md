@@ -1,2 +1,2 @@
-# ndrfx.github.io
-Samarthya - NDRF Assist
+# samarthya
+An NDRF Assist Frontend Web App.
