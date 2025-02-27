@@ -174,7 +174,7 @@ const AdminEmployeeProfile = () => {
         </Grid>
 
         <Grid item xs={12} sm={6} container spacing={3}>
-          {/* Equipment Section */}
+          {/* Courses Section */}
           <Grid item xs={12}>
             <Paper
               elevation={0}
@@ -195,7 +195,7 @@ const AdminEmployeeProfile = () => {
                   marginBottom: "12px"
                 }}
               >
-                🛠 Equipment
+                📚 Courses
               </Typography>
 
               {/* Flexbox Wrapping */}
@@ -206,8 +206,8 @@ const AdminEmployeeProfile = () => {
                 gap: "10px",
                 padding: "8px",
               }}>
-                {employee?.equipment?.length > 0 ? (
-                  employee?.equipment?.map((equipment, index) => (
+                {employee?.courses?.length > 0 ? (
+                  employee?.courses?.map((course, index) => (
                     <Typography
                       key={index}
                       sx={{
@@ -224,12 +224,12 @@ const AdminEmployeeProfile = () => {
                         maxWidth: "180px"
                       }}
                     >
-                      {equipment.name}
+                      {course.name}
                     </Typography>
                   ))
                 ) : (
                   <Typography sx={{ fontSize: "1rem", color: "#777" }}>
-                    No equipment assigned
+                    No courses assigned
                   </Typography>
                 )}
               </Box>
@@ -256,17 +256,16 @@ const AdminEmployeeProfile = () => {
                     },
                   }}
                   color="info"
-                  onClick={() => setOpenEquipmentDialog(true)}
+                  onClick={() => setOpenCourseDialog(true)}
                   disabled={!editing}
                 >
-                  Manage Equipment
+                  Manage Courses
                 </Button>
               )}
 
-              <EquipmentDialog open={openEquipmentDialog} onClose={() => setOpenEquipmentDialog(false)} employee={employee} setEmployee={setEmployee} />
+              <CourseDialog open={openCourseDialog} onClose={() => setOpenCourseDialog(false)} employee={employee} setEmployee={setEmployee} />
             </Paper>
           </Grid>
-
         </Grid>
 
         {/* Action Buttons */}

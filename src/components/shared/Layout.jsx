@@ -75,16 +75,15 @@ const Layout = ({ children }) => {
           </Typography>
           <Box sx={neumorphismStyles.subtitle}>
             <Typography variant="subtitle1">Samarthya</Typography>
-            {user?.role !== "admin" && (
-              <Tooltip title="Change Password">
-                <IconButton
-                  onClick={() => setOpenDialog(true)}
-                  sx={{ ml: 1, ...neumorphismStyles.iconButton }}
-                >
-                  <SettingsIcon fontSize="small" />
-                </IconButton>
-              </Tooltip>
-            )}
+
+            <Tooltip title="Change Password">
+              <IconButton
+                onClick={() => setOpenDialog(true)}
+                sx={{ ml: 1, ...neumorphismStyles.iconButton }}
+              >
+                <SettingsIcon fontSize="small" />
+              </IconButton>
+            </Tooltip>
           </Box>
 
           {/* Logout button only for non-admin users */}
@@ -127,7 +126,7 @@ const Layout = ({ children }) => {
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
           />
-          {message && <Typography color="error" variant="body2">{message}</Typography>}
+          {message && <Typography color={message.includes('successfully') ? 'success' : 'error'} variant="body2">{message}</Typography>}
           <DialogActions>
             <Button sx={neumorphismStyles.button} onClick={() => setOpenDialog(false)} color="secondary">
               Cancel

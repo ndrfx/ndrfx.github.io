@@ -20,10 +20,7 @@ const ProtectedRoute = ({ children, roles }) => {
   const { user, loading } = useAuth();
 
   if (loading) return <LoadingSpinner />;
-
-  if (!user) {
-    return <Navigate to="/login" />;
-  }
+  if (!user) return <Navigate to="/login" />;
 
   if (roles && !roles.includes(user.role)) {
     return <Navigate to="/" />;
@@ -32,6 +29,17 @@ const ProtectedRoute = ({ children, roles }) => {
   return children;
 };
 
+const RedirectBasedOnRole = () => {
+  const { user } = useAuth();
+
+  if (!user) return <Navigate to="/login" replace />;
+
+  return user.role === 'admin'
+    ? <Navigate to="/admin" replace />
+    : <Navigate to={`/employee/${user.employeeId}`} replace />;
+};
+
+
 const App = () => (
   <AuthProvider>
     <HashRouter>
@@ -39,6 +47,9 @@ const App = () => (
         <Routes>
           {/* Public Route */}
           <Route path="/login" element={<Login />} />
+
+          {/* Dynamic Role-Based Redirect */}
+          <Route path="/" element={<RedirectBasedOnRole />} />
 
           {/* Admin Routes */}
           <Route
@@ -63,10 +74,9 @@ const App = () => (
             }
           />
 
-
           {/* Employee Routes */}
           <Route
-            path="/employee/*"
+            path="/employee/:employeeId"
             element={
               <ProtectedRoute roles={['employee']}>
                 <Layout>
@@ -76,8 +86,9 @@ const App = () => (
             }
           />
 
+
           {/* Fallback Route */}
-          <Route path="*" element={<Navigate to="/login" />} />
+          <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </Suspense>
     </HashRouter>
@@ -85,4 +96,3 @@ const App = () => (
 );
 
 export default App;
-

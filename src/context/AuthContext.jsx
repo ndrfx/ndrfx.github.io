@@ -4,7 +4,10 @@ import axios from '../services/api';
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(() => {
+    const storedUser = localStorage.getItem('user');
+    return storedUser ? JSON.parse(storedUser) : null;
+  });
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -14,9 +17,11 @@ export const AuthProvider = ({ children }) => {
         .get('/auth/me', { headers: { Authorization: `Bearer ${token}` } })
         .then((res) => {
           setUser(res.data);
+          localStorage.setItem('user', JSON.stringify(res.data));
         })
         .catch(() => {
           localStorage.removeItem('token');
+          localStorage.removeItem('user');
           setUser(null);
         })
         .finally(() => setLoading(false));
@@ -28,12 +33,15 @@ export const AuthProvider = ({ children }) => {
   const login = async (credentials) => {
     const { data } = await axios.post('/auth/login', credentials);
     localStorage.setItem('token', data.token);
+    console.log(data.user);
+    localStorage.setItem('user', JSON.stringify(data.user));
     setUser(data.user);
     return data.user;
   };
 
   const logout = () => {
     localStorage.removeItem('token');
+    localStorage.removeItem('user');
     setUser(null);
   };
 
