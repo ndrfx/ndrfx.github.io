@@ -149,7 +149,7 @@ const AdminCourse = () => {
 
                                     {expandedRow === course._id && (
                                         <TableRow>
-                                            <TableCell sx={neumorphismStyles.cell} colSpan={isLargeScreen ? 5 : 3}>
+                                            <TableCell sx={neumorphismStyles.cell} colSpan={7}>
                                                 <Box sx={{ p: 2 }}>
                                                     <Typography><strong>Name:</strong> {course.name}</Typography>
                                                     <Typography><strong>Type:</strong> {course.type}</Typography>

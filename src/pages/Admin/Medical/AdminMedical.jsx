@@ -192,7 +192,7 @@ const AdminMedical = () => {
                   {/* Expanded Row */}
                   {expandedRow === record._id && (
                     <TableRow>
-                      <TableCell sx={neumorphismStyles.cell} colSpan={isLargeScreen ? 5 : 3}>
+                      <TableCell sx={neumorphismStyles.cell} colSpan={7}>
                         <Box sx={{ p: 2 }}>
                           <Typography variant="body2">
                             <strong>Employee Details:</strong> {record.employee?.name} ({record.employee?.regimentalNo})
