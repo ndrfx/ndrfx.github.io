@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Box } from "@mui/material";
 
-const LoadingSpinner = ({ theme = "tealAqua" }) => {
+const LoadingSpinner = () => {
   const [loadingTime, setLoadingTime] = useState(0);
   const [angle, setAngle] = useState(0);
 
@@ -16,31 +16,6 @@ const LoadingSpinner = ({ theme = "tealAqua" }) => {
 
   const size = 80;
   const shadowOffset = Math.sin((angle * Math.PI) / 180) * 10;
-
-  const themes = {
-    cyanBlue: {
-      background: `radial-gradient(circle at 50% 50%, #00FFFF, #007BFF)`,
-      inner: `linear-gradient(135deg, #00E5FF, #0096FF)`,
-      shadow: `rgba(0, 122, 255, 0.5)`,
-    },
-    tealAqua: {
-      background: `radial-gradient(circle at 50% 50%, #008080, #00E5FF)`,
-      inner: `linear-gradient(135deg, #A7FFEB, #4DB6AC)`,
-      shadow: `rgba(0, 230, 255, 0.5)`,
-    },
-    magentaPurple: {
-      background: `radial-gradient(circle at 50% 50%, #FF00FF, #6A0DAD)`,
-      inner: `linear-gradient(135deg, #E040FB, #AB47BC)`,
-      shadow: `rgba(160, 32, 240, 0.5)`,
-    },
-    sunsetGlow: {
-      background: `radial-gradient(circle at 50% 50%, #FF4500, #FFC107)`,
-      inner: `linear-gradient(135deg, #FF6D00, #FFD600)`,
-      shadow: `rgba(255, 140, 0, 0.5)`,
-    },
-  };
-
-  const themeColors = themes[theme] || themes.cyanBlue;
 
   return (
     <Box
@@ -59,10 +34,12 @@ const LoadingSpinner = ({ theme = "tealAqua" }) => {
           height: `${size}px`,
           borderRadius: "50%",
           position: "relative",
-          background: themeColors.background,
-          boxShadow: `${shadowOffset}px ${shadowOffset}px 20px ${themeColors.shadow}, 
+          background: `radial-gradient(circle at ${50 + shadowOffset}% ${
+            50 - shadowOffset
+          }%, #ffffff, #e0e0e0)`,
+          boxShadow: `${shadowOffset}px ${shadowOffset}px 20px #bebebe, 
                       ${-shadowOffset}px ${-shadowOffset}px 20px #ffffff`,
-          animation: `pulse-animation 2s infinite alternate ease-in-out`,
+          animation: `pulse-animation 2s infinite alternate`,
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
@@ -73,10 +50,10 @@ const LoadingSpinner = ({ theme = "tealAqua" }) => {
             width: `${size / 2}px`,
             height: `${size / 2}px`,
             borderRadius: "50%",
-            background: themeColors.inner,
-            boxShadow: `inset ${shadowOffset}px ${shadowOffset}px 10px ${themeColors.shadow}, 
+            background: `linear-gradient(135deg, #ffffff, #c0c0c0)`,
+            boxShadow: `inset ${shadowOffset}px ${shadowOffset}px 10px #bebebe, 
                         inset ${-shadowOffset}px ${-shadowOffset}px 10px #ffffff`,
-            animation: loadingTime > 15 ? "spin-animation 1.5s linear infinite" : "none",
+            animation: loadingTime > 15 ? "spin-animation 1s linear infinite" : "none",
           }}
         />
       </Box>
@@ -84,8 +61,8 @@ const LoadingSpinner = ({ theme = "tealAqua" }) => {
       <style>
         {`
           @keyframes pulse-animation {
-            0% { transform: scale(1); opacity: 0.8; }
-            100% { transform: scale(1.1); opacity: 1; }
+            0% { transform: scale(1); }
+            100% { transform: scale(1.1); }
           }
 
           @keyframes spin-animation {
