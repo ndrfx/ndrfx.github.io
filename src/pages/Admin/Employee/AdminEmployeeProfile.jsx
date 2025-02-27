@@ -89,7 +89,7 @@ const AdminEmployeeProfile = () => {
       </Grid>
 
       {/* Basic Info Section */}
-      <Grid container spacing={4} padding={4}>
+      <Grid container spacing={4} padding={1}>
 
         {/* Left Column - Basic Info */}
         <Grid item xs={12} sm={6}>

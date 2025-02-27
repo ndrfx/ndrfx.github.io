@@ -281,7 +281,7 @@ const AdminEquipment = () => {
       {/* Modal for Add/Edit */}
       <Dialog open={open} onClose={handleClose} fullWidth>
         <DialogTitle>{editMode ? 'Edit Equipment' : 'Add Equipment'}</DialogTitle>
-        <DialogContent>
+        <DialogContent sx={neumorphismStyles.container}>
           <Box component="form" noValidate onSubmit={handleSubmit(handleAddEquipment)} sx={{ mt: 2 }}>
             <Controller
               name="name"
@@ -289,6 +289,7 @@ const AdminEquipment = () => {
               rules={{ required: 'Name is required' }}
               render={({ field, fieldState }) => (
                 <TextField
+                  sx={neumorphismStyles.input}
                   {...field}
                   label="Name"
                   fullWidth
@@ -304,6 +305,7 @@ const AdminEquipment = () => {
               rules={{ required: 'Purchase Date is required' }}
               render={({ field, fieldState }) => (
                 <TextField
+                  sx={neumorphismStyles.input}
                   {...field}
                   label="Purchase Date"
                   fullWidth
@@ -320,7 +322,7 @@ const AdminEquipment = () => {
               control={control}
               rules={{ required: 'Category is required' }}
               render={({ field, fieldState }) => (
-                <FormControl fullWidth margin="normal" error={!!fieldState.error}>
+                <FormControl sx={neumorphismStyles.input} fullWidth margin="normal" error={!!fieldState.error}>
                   <InputLabel>Category</InputLabel>
                   <Select value={selectedRecord?.category} {...field}>
                     {categories.map((category) => (
@@ -338,6 +340,7 @@ const AdminEquipment = () => {
               control={control}
               render={({ field }) => (
                 <FormControlLabel
+                  sx={neumorphismStyles.input}
                   control={<Checkbox {...field} defaultChecked={selectedRecord?.isServiceable} />}
                   label="Is Serviceable?"
                 />
@@ -347,35 +350,35 @@ const AdminEquipment = () => {
               name="description"
               control={control}
               render={({ field }) => (
-                <TextField {...field} label="Description" fullWidth margin="normal" />
+                <TextField sx={neumorphismStyles.input} {...field} label="Description" fullWidth margin="normal" />
               )}
             />
             <Controller
               name="remarks"
               control={control}
               render={({ field }) => (
-                <TextField {...field} label="Remarks" fullWidth margin="normal" />
+                <TextField sx={neumorphismStyles.input} {...field} label="Remarks" fullWidth margin="normal" />
               )}
             />
             <Controller
               name="manufacturer"
               control={control}
               render={({ field }) => (
-                <TextField {...field} label="Manufacturer" fullWidth margin="normal" />
+                <TextField sx={neumorphismStyles.input} {...field} label="Manufacturer" fullWidth margin="normal" />
               )}
             />
             <Controller
               name="warrantyPeriod"
               control={control}
               render={({ field }) => (
-                <TextField {...field} label="Warranty Period" fullWidth margin="normal" />
+                <TextField sx={neumorphismStyles.input} {...field} label="Warranty Period" fullWidth margin="normal" />
               )}
             />
             <Controller
               name="lastServiced"
               control={control}
               render={({ field }) => (
-                <TextField {...field} label="Last Serviced" fullWidth margin="normal" type="date" InputLabelProps={{ shrink: true }} />
+                <TextField sx={neumorphismStyles.input} {...field} label="Last Serviced" fullWidth margin="normal" type="date" InputLabelProps={{ shrink: true }} />
               )}
             />
 
@@ -383,7 +386,7 @@ const AdminEquipment = () => {
               name="status"
               control={control}
               render={({ field }) => (
-                <FormControl fullWidth margin="normal">
+                <FormControl sx={neumorphismStyles.input} fullWidth margin="normal">
                   <InputLabel>Status</InputLabel>
                   <Select {...field} label="Status">
                     {['In Use', 'Available', 'Under Maintenance', 'Retired'].map((status) => (

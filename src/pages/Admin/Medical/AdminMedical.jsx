@@ -238,7 +238,7 @@ const AdminMedical = () => {
       {/* Modal for Add/Edit */}
       <Dialog open={open} onClose={handleClose} fullWidth>
         <DialogTitle>{editMode ? 'Edit Medical Record' : 'Add Medical Record'}</DialogTitle>
-        <DialogContent>
+        <DialogContent sx={neumorphismStyles.container}>
           <Box component="form" noValidate onSubmit={handleSubmit(handleAddMedicalRecord)} sx={{ mt: 2 }}>
             <Controller
               name="employee"
@@ -269,6 +269,7 @@ const AdminMedical = () => {
               rules={{ required: 'Date is required' }}
               render={({ field, fieldState }) => (
                 <TextField
+                  sx={neumorphismStyles.input}
                   {...field}
                   label="Date"
                   fullWidth
@@ -285,7 +286,7 @@ const AdminMedical = () => {
               control={control}
               rules={{ required: 'Category is required' }}
               render={({ field, fieldState }) => (
-                <FormControl fullWidth margin="normal" error={!!fieldState.error}>
+                <FormControl sx={neumorphismStyles.input} fullWidth margin="normal" error={!!fieldState.error}>
                   <InputLabel>Category</InputLabel>
                   <Select {...field}>
                     <MenuItem value="SHAPE1">SHAPE1</MenuItem>
@@ -299,7 +300,7 @@ const AdminMedical = () => {
               name="description"
               control={control}
               render={({ field }) => (
-                <TextField {...field} label="Description" fullWidth margin="normal" />
+                <TextField sx={neumorphismStyles.input} {...field} label="Description" fullWidth margin="normal" />
               )}
             />
             <DialogActions>

@@ -294,6 +294,7 @@ const AdminBMI = () => {
               rules={{ required: "Weight is required" }}
               render={({ field, fieldState }) => (
                 <TextField
+                  sx={neumorphismStyles.input}
                   {...field}
                   label="Weight (kg)"
                   fullWidth
@@ -310,6 +311,7 @@ const AdminBMI = () => {
               rules={{ required: "Height is required" }}
               render={({ field, fieldState }) => (
                 <TextField
+                  sx={neumorphismStyles.input}
                   {...field}
                   label="Height (cm)"
                   fullWidth
@@ -325,6 +327,7 @@ const AdminBMI = () => {
               control={control}
               render={({ field }) => (
                 <TextField
+                  sx={neumorphismStyles.input}
                   {...field}
                   label="BMI"
                   fullWidth
@@ -336,13 +339,13 @@ const AdminBMI = () => {
             />
           </Box>
           <DialogActions>
-          <Button sx={neumorphismStyles.button} onClick={handleClose} >
-            Cancel
-          </Button>
-          <Button sx={neumorphismStyles.button} onClick={handleSubmit(handleSaveRecord)} color="success">
-            {editMode ? "Save" : "Add"}
-          </Button>
-        </DialogActions>
+            <Button sx={neumorphismStyles.button} onClick={handleClose} >
+              Cancel
+            </Button>
+            <Button sx={neumorphismStyles.button} onClick={handleSubmit(handleSaveRecord)} color="success">
+              {editMode ? "Save" : "Add"}
+            </Button>
+          </DialogActions>
         </DialogContent>
       </Dialog>
     </Box>

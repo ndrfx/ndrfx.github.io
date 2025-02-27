@@ -184,7 +184,7 @@ const AdminCourse = () => {
             {/* Modal for Add/Edit */}
             <Dialog open={open} onClose={handleClose} fullWidth>
                 <DialogTitle>{editMode ? "Edit Course" : "Add Course"}</DialogTitle>
-                <DialogContent>
+                <DialogContent sx={neumorphismStyles.container}>
                     <Box component="form" noValidate onSubmit={handleSubmit(handleAddCourse)} sx={{ mt: 2 }}>
                         <Controller
                             name="name"
@@ -192,6 +192,7 @@ const AdminCourse = () => {
                             rules={{ required: "Course name is required" }}
                             render={({ field, fieldState }) => (
                                 <TextField
+                                    sx={neumorphismStyles.input}
                                     {...field}
                                     label="Course Name"
                                     fullWidth
@@ -207,6 +208,7 @@ const AdminCourse = () => {
                             rules={{ required: "Type is required" }}
                             render={({ field, fieldState }) => (
                                 <TextField
+                                    sx={neumorphismStyles.input}
                                     {...field}
                                     select
                                     label="Type"
@@ -225,6 +227,7 @@ const AdminCourse = () => {
                             control={control}
                             render={({ field }) => (
                                 <TextField
+                                    sx={neumorphismStyles.input}
                                     {...field}
                                     label="Description"
                                     fullWidth
@@ -240,6 +243,7 @@ const AdminCourse = () => {
                             rules={{ required: "Duration is required" }}
                             render={({ field, fieldState }) => (
                                 <TextField
+                                    sx={neumorphismStyles.input}
                                     {...field}
                                     label="Duration (e.g., 2 hours)"
                                     fullWidth
@@ -250,15 +254,15 @@ const AdminCourse = () => {
                             )}
                         />
                     </Box>
+                    <DialogActions>
+                        <Button sx={neumorphismStyles.button} onClick={handleClose}>
+                            Cancel
+                        </Button>
+                        <Button sx={neumorphismStyles.button} onClick={handleSubmit(handleAddCourse)} color="success">
+                            {editMode ? "Save" : "Add"}
+                        </Button>
+                    </DialogActions>
                 </DialogContent>
-                <DialogActions>
-                    <Button sx={neumorphismStyles.button} onClick={handleClose}>
-                        Cancel
-                    </Button>
-                    <Button sx={neumorphismStyles.button} onClick={handleSubmit(handleAddCourse)} color="success">
-                        {editMode ? "Save" : "Add"}
-                    </Button>
-                </DialogActions>
             </Dialog>
         </Box>
     );

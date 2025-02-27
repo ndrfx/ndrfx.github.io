@@ -125,12 +125,12 @@ const AdminProfileLeave = ({ employeeId }) => {
 
       {loading ? (
         <LoadingSpinner />
-      ) : (
+      ) : leaveRecords.length > 0 ? (
         <TableContainer component={Paper} sx={neumorphismStyles.paper}>
           <Table>
             <TableHead>
               <TableRow>
-                
+
                 <TableCell>Leave Type</TableCell>
                 <TableCell>Start Date</TableCell>
                 {isLargeScreen && <TableCell>End Date</TableCell>}
@@ -195,6 +195,8 @@ const AdminProfileLeave = ({ employeeId }) => {
             </TableBody>
           </Table>
         </TableContainer>
+      ) : (
+        <Typography sx={{ textAlign: "center", color: "#777" }}>No Leave record found</Typography>
       )}
 
       <Dialog open={open} onClose={handleClose} fullWidth>
