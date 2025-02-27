@@ -193,7 +193,6 @@ const AdminEmployee = () => {
               {error}
             </Alert>
           ) : (
-            <Paper sx={neumorphismStyles.paper}>
               <EmployeeList
                 employees={employees}
                 onEdit={handleEdit}
@@ -206,7 +205,6 @@ const AdminEmployee = () => {
                   }
                 }}
               />
-            </Paper>
           )}
         </Grid>
       </Grid>

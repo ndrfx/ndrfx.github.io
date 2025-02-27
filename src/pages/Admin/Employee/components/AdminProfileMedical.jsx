@@ -143,7 +143,7 @@ const AdminProfileMedical = ({ employeeId }) => {
       {loading ? (
         <LoadingSpinner />
       ) : medicalRecord ? (
-        <ResponsiveTable>
+        <ResponsiveTable sx={neumorphismStyles.paper}>
           <Table>
             <TableHead>
               <TableRow>
@@ -171,7 +171,7 @@ const AdminProfileMedical = ({ employeeId }) => {
 
                 {/* Expanded Row */}
                 {expandedRow === medicalRecord._id && (
-                  <TableRow>
+                  <TableRow sx={neumorphismStyles.paper}>
                     <TableCell colSpan={isLargeScreen ? 5 : 3} sx={neumorphismStyles.cell}>
                       <Box sx={{ p: 2 }}>
                         <Typography variant="body2">
